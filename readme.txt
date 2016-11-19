@@ -5,8 +5,9 @@ For running get_month.rb, you should have ruby installed. If you use Mac/Linux, 
 If you have a Windows Machine, you can install Ruby using the Ruby Installer here http://rubyinstaller.org.
 Further reading on ruby installation: https://www.ruby-lang.org/en/documentation/installation/#apt.
 
+Run $ git clone https://github.com/EdwinnaElbert/get_month in your terminal.
 Place your text file into the get_month directory.
-Open your terminal, cd into that directory.
+cd into that directory.
 Run $ bundle install
 Run $ irb
 Run $ load 'get_month.rb'
@@ -22,9 +23,9 @@ get_month.rb -- простая программа, написанная на р�
 Подразумевается, что в каждой строке файла указана только одна дата в формате дд.мм.гг.
 
 Для запуска get_month.rb нужно иметь установленный руби, Подробно https://www.ruby-lang.org/ru/documentation/installation/.
-
+Запустите $ git clone https://github.com/EdwinnaElbert/get_month в консоли.
 Поместите текстовый файл в директорию get_month.
-Откройте консоль, перейдите в эту директорию.
+Перейдите в эту директорию.
 Запустите $ bundle install
 Запустите $ irb
 Запустите $ load 'get_month.rb'
