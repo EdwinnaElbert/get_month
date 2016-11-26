@@ -11,21 +11,23 @@ genrary = []
 
 # gets the filename from user input
 begin
-def fopen
-  puts 'Enter filename (e.g. my_films.txt) or it will load the default file.'
-  File.open(gets.chomp)
-rescue
-  File.open('films.txt')
-rescue
-  puts 'invalid filename or file does not exist'
-  fopen
-end
+  def fopen
+    puts 'Enter filename (e.g. my_films.txt) or it will load the default file.'
+    File.open(gets.chomp)
+  rescue
+    File.open('films.txt')
+  rescue
+    puts 'invalid filename or file does not exist'
+    fopen
+  end
 end
 # gets an array with all movies
 processed_file = fopen
-processed_file.each { |line| filmary.push(line.split(/ \(/).first.split(/\. /).last) }
+processed_file.each do |line|
+  filmary.push(line.split(/ \(/).first.split(/\. /).last)
+end
 # get genres hash
-filmary.each { |film|
+filmary.each do |film|
   begin
     search1 = FilmAffinity::Search.new(film)
     id = search1.movies.first.id
@@ -35,7 +37,7 @@ filmary.each { |film|
   rescue
     puts "No matches found for #{film}"
   end
-}
-puts genrehash = Hash[*genrary.frequency.sort_by(&:last).reverse.flatten ]
+end
+puts Hash[*genrary.frequency.sort_by(&:last).reverse.flatten]
 
 processed_file.close
