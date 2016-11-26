@@ -2,7 +2,7 @@
 require 'date'
 require 'bundler/setup'
 Bundler.require :default
-release_date = []
+review_date = []
 monthary = []
 monthname_and_count = []
 
@@ -28,10 +28,10 @@ end
 processed_file = fopen
 
 processed_file.each do |line|
-  release_date += get_date(line).to_a unless get_date(line).nil?
+  review_date += get_date(line).to_a unless get_date(line).nil?
 end
 
-release_date.each do |d|
+review_date.each do |d|
   monthary.push(get_month(d))
 end
 
