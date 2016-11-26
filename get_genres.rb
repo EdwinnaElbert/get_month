@@ -2,13 +2,14 @@ require 'facets'
 require 'bundler/setup'
 require 'filmaffinity'
 Bundler.require :default
+
 FilmAffinity.configure do |config|
   config.imgur_id = 'Your-imgur-client-id'
   config.language = 'EN'
 end
+
 filmary = []
 genrary = []
-
 # gets the filename from user input
 begin
   def fopen
@@ -21,23 +22,24 @@ begin
     fopen
   end
 end
-# gets an array with all movies
+# gets an array with all movies from user's .txt file
 processed_file = fopen
 processed_file.each do |line|
   filmary.push(line.split(/ \(/).first.split(/\. /).last)
 end
-# get genres hash
-filmary.each do |film|
-  begin
-    search1 = FilmAffinity::Search.new(film)
-    id = search1.movies.first.id
-    mov = FilmAffinity::Movie.new(id, film)
-    genre = mov.genres
-    genrary.push(genre).flatten!
-  rescue
-    puts "No matches found for #{film}"
-  end
+# search for a movie on www.filmaffinity.com
+def get_gnr(film)
+  search1 = FilmAffinity::Search.new(film)
+  id = search1.movies.first.id
+  mov = FilmAffinity::Movie.new(id, film)
+  mov.genres
+rescue
 end
-puts Hash[*genrary.frequency.sort_by(&:last).reverse.flatten]
 
+filmary.each do |movie|
+  genrary.push(get_gnr(movie)).flatten!
+end
+# get genres hash
+myh = Hash[*genrary.frequency.sort_by(&:last).reverse.flatten]
+myh.each { |g, i| puts "#{g}: #{i}" }
 processed_file.close
